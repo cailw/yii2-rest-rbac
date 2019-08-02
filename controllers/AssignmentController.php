@@ -2,7 +2,7 @@
 
 namespace cailw\rbac\rest\controllers;
 
-use common\models\ar\Menu;
+use cailw\rbac\rest\models\Menu;
 use Yii;
 use cailw\rbac\rest\models\searchs\Assignment as AssignmentSearch;
 use yii\web\NotFoundHttpException;
@@ -35,7 +35,6 @@ class AssignmentController extends BaseController
         parent::init();
         if ($this->userClassName === null) {
             $this->userClassName = Yii::$app->getUser()->identityClass;
-            $this->userClassName = $this->userClassName ? : 'common\models\User';
         }
     }
 

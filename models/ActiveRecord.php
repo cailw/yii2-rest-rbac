@@ -20,6 +20,6 @@ class ActiveRecord extends AR
         if (is_array($errors) && ! empty($errors)) {
             return array_values($errors)[0];
         }
-        return '';
+        return '系统繁忙，请稍后重试';
     }
 }

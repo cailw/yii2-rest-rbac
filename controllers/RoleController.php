@@ -2,7 +2,7 @@
 
 namespace cailw\rbac\rest\controllers;
 
-use common\models\ar\Menu;
+use cailw\rbac\rest\models\Menu;
 use cailw\rbac\rest\models\AuthItem;
 use cailw\rbac\rest\models\searchs\AuthItem as AuthItemSearch;
 use yii\web\HttpException;

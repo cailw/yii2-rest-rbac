@@ -18,10 +18,6 @@ use yii\web\ForbiddenHttpException;
  * For example.
  *
  * ~~~
- * 'as access' => [
- *     'class' => 'common\modules\rbac\components\AccessControl',
- *     'allowActions' => ['site/login', 'site/error']
- * ]
  * ~~~
  *
  * @property User $user

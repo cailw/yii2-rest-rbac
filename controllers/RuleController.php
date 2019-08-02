@@ -3,7 +3,7 @@
 namespace cailw\rbac\rest\controllers;
 
 use Yii;
-use common\models\ar\Menu;
+use cailw\rbac\rest\models\Menu;
 use cailw\rbac\rest\models\AuthItem;
 use cailw\rbac\rest\models\BizRule;
 use cailw\rbac\rest\models\searchs\BizRule as BizRuleSearch;

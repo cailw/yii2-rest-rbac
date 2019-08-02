@@ -3,7 +3,7 @@
 namespace cailw\rbac\rest\controllers;
 
 use Yii;
-use common\models\ar\Menu;
+use cailw\rbac\rest\models\Menu;
 use cailw\rbac\rest\models\Route;
 use yii\caching\TagDependency;
 use cailw\rbac\rest\components\RouteRule;
@@ -32,7 +32,7 @@ class RouteController extends BaseController
 
         $exists = $existsOptions = $routes = [];
         
-        $all=$this->getAppRoutes();
+        $all=$this->getAppRoutes(); 
         sort($all);
         foreach ($all as $route){
             $routes[$route]=['label'=>$route,'key'=>$route,'disabled'=>false];
@@ -109,11 +109,21 @@ class RouteController extends BaseController
      * @param string $term
      * @param string $refresh
      * @return array
+     * @menu 刷新路由
      */
     public function actionRouteRefresh()
     {
         $this->invalidate();
-        return $this->actionIndex();
+        
+//         $routes=$this->getAppRoutes();
+//         $children=[];
+//         foreach ($routes as $route){
+//             $children[]=['parent'=>'super_admin','child'=>$route];
+//         }
+//         return Yii::$app->db->createCommand()->batchInsert('{{%auth_item_child}}', array_keys($children[0]), $children)->execute();
+        
+        $this->saveNew($this->getAppRoutes());
+        return $this->success();
     }
 
     /**
@@ -194,7 +204,7 @@ class RouteController extends BaseController
 
             $namespace = trim($module->controllerNamespace, '\\') . '\\';
             $this->getControllerFiles($module, $namespace, '', $result);
-            $result[] = ($module->uniqueId === '' ? '' : '/' . $module->uniqueId) . '/*';
+//             $result[] = ($module->uniqueId === '' ? '' : '/' . $module->uniqueId) . '/*';
         } catch (\Exception $exc) {
             Yii::error($exc->getMessage(), __METHOD__);
         }
@@ -253,7 +263,7 @@ class RouteController extends BaseController
             /* @var $controller \yii\base\Controller */
             $controller = Yii::createObject($type, [$id, $module]);
             $this->getActionRoutes($controller, $result);
-            $result[] = '/' . $controller->uniqueId . '/*';
+//             $result[] = '/' . $controller->uniqueId . '/*';
         } catch (\Exception $exc) {
             Yii::error($exc->getMessage(), __METHOD__);
         }
